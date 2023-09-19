@@ -11,7 +11,7 @@ import pymongo
 app = Flask(__name__)
 
 # Initialize NLTK and MongoDB connection
-nltk.data.path.append("C:\\Users\\Sharda Prasad Maurya.LAPTOP-4MVRVONI\\Desktop\\privacy public\\nltk_data")
+nltk.data.path.append("nltk_data")
 client = pymongo.MongoClient("mongodb://localhost:27017/")
 db = client["your_database_name"]
 collection = db["projects"]
