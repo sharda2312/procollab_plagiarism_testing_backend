@@ -1,4 +1,4 @@
-flask==2.1.2
-nltk==3.8
-pymongo==4.2.2
-scikit-learn==1.1.1
+flask
+nltk
+pymongo
+scikit-learn
