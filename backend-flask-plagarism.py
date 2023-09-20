@@ -10,8 +10,12 @@ import pymongo
 # Initialize Flask app
 app = Flask(__name__)
 
+# Download NLTK data (specific resources) from the server
+nltk.downloader.download('punkt')  # Download tokenization data
+nltk.downloader.download('stopwords')  # Download stopwords data
+
+
 # Initialize NLTK and MongoDB connection
-nltk.data.path.append("nltk_data")
 client = pymongo.MongoClient("mongodb://localhost:27017/")
 db = client["your_database_name"]
 collection = db["projects"]
