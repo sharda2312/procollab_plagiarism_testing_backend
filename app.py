@@ -7,6 +7,8 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import pymongo
 
+MONGODB_CONNECTION_STRING = "{{shared.MONGODB_CONNECTION_STRING}}"
+
 # Initialize Flask app
 app = Flask(__name__)
 
@@ -16,7 +18,7 @@ nltk.downloader.download('stopwords')  # Download stopwords data
 
 
 # Initialize NLTK and MongoDB connection
-client = pymongo.MongoClient("mongodb://localhost:27017/")
+client = pymongo.MongoClient(MONGODB_CONNECTION_STRING)
 db = client["your_database_name"]
 collection = db["projects"]
 
@@ -71,7 +73,8 @@ def api_check_plagiarism():
         plagiarism_score = check_plagiarism(user_title, user_description)
         
         # Determine if the project should be accepted or rejected
-        if plagiarism_score > 0.7:
+        max_similarity_score = max(plagiarism_score[0])
+        if max_similarity_score > 0.6 :
             response = {'status': 'rejected', 'message': 'Plagiarism detected! Project rejected.'}
         else:
             response = {'status': 'accepted', 'message': 'Project submitted successfully.'}
