@@ -84,4 +84,4 @@ def api_check_plagiarism():
         return jsonify({'status': 'error', 'message': str(e)})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
