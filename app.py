@@ -126,4 +126,4 @@ def api_check_plagiarism():
         return jsonify({'status': 'error', 'message': str(e)})
 
 if __name__ == '__main__':
-    app.run(debug=False)  # Enable debugging for development
+    app.run(host='0.0.0.0', port=5000)  # Enable debugging for development
