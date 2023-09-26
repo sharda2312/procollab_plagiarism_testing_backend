@@ -75,12 +75,14 @@ def api_check_plagiarism():
         
         global global_var
         if global_var is None:
-            get_data_from_api()      
-
+            get_data_from_api()   
+        
+        data = request.get_json()
+        
         # taking the data from user upload project form
-        user_title = request.form.get('title')
-        user_short_description = request.form.get('shortdescription')
-        user_description = request.form.get('description')
+        user_title = data['title'] 
+        user_short_description = data['shortdescription'] 
+        user_description = data['description'] 
 
         # creating boolean accept to check if the project is accepted or not 
         accept=True
