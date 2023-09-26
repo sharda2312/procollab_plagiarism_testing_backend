@@ -83,6 +83,8 @@ def api_check_plagiarism():
         user_title = data['title'] 
         user_short_description = data['shortdescription'] 
         user_description = data['description'] 
+        
+        user_data=user_title+user_short_description+user_description
 
         # creating boolean accept to check if the project is accepted or not 
         accept=True
@@ -97,16 +99,11 @@ def api_check_plagiarism():
             if 'description' in item:
                 discription = item['description']
                
-            plagiarism_score=[0,0,0]
+            projectdata = title +" "+ shortdiscription +" "+ discription
             
             # Check plagiarism
-            plagiarism_score[0] = check_plagiarism(user_title, title)
-            
-            plagiarism_score[1] = check_plagiarism(user_short_description, shortdiscription)
-            
-            plagiarism_score[2] = check_plagiarism(user_description, discription)
-            
-            plagiarism_score=max(plagiarism_score)
+                        
+            plagiarism_score = check_plagiarism(user_data, projectdata)
            
             # add the max value in the max_similarity
             max_similarity.append(plagiarism_score)
@@ -116,7 +113,7 @@ def api_check_plagiarism():
             
             max_similarity_score=float(max_similarity_score)
             
-            if max_similarity_score > 0.7:
+            if max_similarity_score > 0.65:
                 response = [{'status': 'rejected', 'message': 'Plagiarism detected! Project rejected.','percentage':int(max_similarity_score*100)}]
                 accept=False
                 break
