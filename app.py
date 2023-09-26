@@ -9,6 +9,10 @@ import requests
 
 app = Flask(__name__)
 
+@app.route('/')
+def hello_world():
+    return 'Hello, Flask!'
+
 # Download NLTK data (specific resources) from the server
 nltk.downloader.download('punkt')  # Download tokenization data
 nltk.downloader.download('stopwords')  # Download stopwords data
@@ -62,7 +66,7 @@ def check_plagiarism(user_data, project_data):
     return plagiarism_score
 
 # API endpoint to check plagiarism
-@app.route('/', methods=['POST'])
+@app.route('/get', methods=['POST'])
 def api_check_plagiarism():
     try:
         
