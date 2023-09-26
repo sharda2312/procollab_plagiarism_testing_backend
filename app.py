@@ -6,8 +6,10 @@ from nltk.stem import PorterStemmer
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import requests
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
+CORS(app, resources={r"/get": {"origins": "http://localhost:3000"}})
 
 @app.route('/')
 def hello_world():
@@ -67,6 +69,7 @@ def check_plagiarism(user_data, project_data):
 
 # API endpoint to check plagiarism
 @app.route('/get', methods=['POST'])
+@cross_origin(origin="http://localhost:3000", headers=["Content-Type", "Authorization"])
 def api_check_plagiarism():
     try:
         

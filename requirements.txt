@@ -2,3 +2,4 @@ flask
 nltk
 scikit-learn
 requests
+flask_cors
