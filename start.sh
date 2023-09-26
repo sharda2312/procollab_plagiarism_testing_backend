@@ -8,4 +8,4 @@ python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 
 # Start your Flask application
-python your_app.py
+python app.py
