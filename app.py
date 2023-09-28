@@ -33,7 +33,7 @@ def get_data_from_api():
         global_var = response.json()  # Assuming the response contains JSON data
     else:
         print("Error: Failed to retrieve data from the API")
-        
+        global_var = []   
     # storing the backend data to global_var   
     global_var = global_var.get('message')
 
