@@ -25,7 +25,7 @@ global_var = None
 def get_data_from_api():
     
     global global_var
-    api_url = 'https://backend69.up.railway.app/get/projects'
+    api_url = 'https://procollabbackend.onrender.com/'
 
     # Make the GET request
     response = requests.get(api_url)
