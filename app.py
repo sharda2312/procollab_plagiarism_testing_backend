@@ -104,24 +104,21 @@ def api_check_plagiarism():
             # Check plagiarism
                         
             plagiarism_score = check_plagiarism(user_data, projectdata)
+            
+            plagiarism_score=float(plagiarism_score)
            
             # add the max value in the max_similarity
-            max_similarity.append(plagiarism_score)
+            max_similarity.append(plagiarism_score)  
             
-            # Determine if the project should be accepted or rejected (adjust threshold as needed)
-            max_similarity_score = plagiarism_score
-            
-            max_similarity_score=float(max_similarity_score)
-            
-            if max_similarity_score > 0.65:
-                response = [{'status': 'rejected', 'message': 'Plagiarism detected! Project rejected.','percentage':int(max_similarity_score*100)}]
-                accept=False
-                break
+            # if plagiarism_score > 0.99:
+            #     response = [{'status': 'rejected', 'message': 'Plagiarism detected! Project rejected.','percentage':int(plagiarism_score*100)}]
+            #     accept=False
+            #     break
         
         # if the project is not rejected then it will run with the response project accepted
-        if accept :
-            max_similarity=max(max_similarity)          
-            response = [{'status': 'accepted', 'message': 'Project submitted successfully.','percentage':int(max_similarity*100)}]
+        
+        max_similarity=max(max_similarity)          
+        response = [{'percentage':int(max_similarity*100)}]
         
         return jsonify(response)
     except Exception as e:
